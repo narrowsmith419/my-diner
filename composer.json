@@ -1,0 +1,14 @@
+{
+  "name": "narrowsmith/328/my-diner",
+  "description": "My Diner Project",
+  "license": "open source",
+  "authors": [
+    {
+      "name": "Nathan Arrowsmith",
+      "email": "narrowsmith@student.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
