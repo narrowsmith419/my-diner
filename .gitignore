@@ -1,0 +1,5 @@
+# this contains all of the files and folders I want Git to ignore
+
+composer.lock
+tmp/
+vendor/
