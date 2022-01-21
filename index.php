@@ -15,7 +15,8 @@ require_once('vendor/autoload.php');
 $f3 = Base::instance();
 
 //define default route
-$f3->route('GET /',function(){
+//routes only exist when defined in this controller
+$f3->route('GET /', function(){
     //echo "<h1>Sup World</h1>";
 
     $view = new Template();
@@ -25,8 +26,8 @@ $f3->route('GET /',function(){
 
 });
 
-$view = new Template();
-echo $view->render('views/home.html');
+/*$view = new Template();
+echo $view->render('views/home.html');*/
 
 //run fat-free
 $f3->run();
