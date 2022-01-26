@@ -23,6 +23,45 @@ $f3->route('GET /', function(){
 
     echo $view->render('views/home.html');
 
+});
+
+//define breakfast route
+//routes only exist when defined in this controller
+$f3->route('GET /breakfast', function(){
+
+    $view = new Template();
+
+    echo $view->render('views/breakfast-menu.html');
+
+});
+
+//define breakfast route
+//routes only exist when defined in this controller
+$f3->route('GET /lunch', function(){
+
+    $view = new Template();
+
+    echo $view->render('views/lunch-menu.html');
+
+});
+
+//define order route
+//routes only exist when defined in this controller
+$f3->route('GET /order1', function(){
+
+    $view = new Template();
+
+    echo $view->render('views/orderForm1.html');
+
+});
+
+//define order route
+//routes only exist when defined in this controller
+$f3->route('GET /order2', function(){
+
+    $view = new Template();
+
+    echo $view->render('views/orderForm2.html');
 
 });
 
