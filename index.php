@@ -67,6 +67,9 @@ $f3->route('GET /summary', function(){
 //when page is first visited, it is using the GET method then when form is submitted it is using the POST method
 $f3->route('GET|POST /order1', function($f3){
 
+    //get the condiments from the model and add to the F3 hive
+    $f3->set('meal', getMeal());
+
     //if the form has been posted
     if($_SERVER['REQUEST_METHOD'] == 'POST')
     {

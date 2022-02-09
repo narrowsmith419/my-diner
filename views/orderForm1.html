@@ -17,12 +17,16 @@
         <div class="form-group">
             <label class="col-sm-4 control-label">Select a meal</label>
             <div class="col-sm-4">
-                <label><input type="radio" name="meal" value="breakfast" > Breakfast
-                </label><br>
-                <label><input type="radio" name="meal" value="lunch" > Lunch
+                <repeat group="{{ @meal }}" value="{{ @mealtype }}">
+                    <label><input type="radio" name="meal[]" value=" {{ @mealtype }} " >  {{ ucfirst(@mealtype) }}
+                    </label><br>
+                </repeat>
+
+
+                <!--<label><input type="radio" name="meal" value="lunch" > Lunch
                 </label><br>
                 <label><input type="radio" name="meal" value="dinner" > Dinner
-                </label><br>
+                </label><br>-->
             </div>
         </div>
 
