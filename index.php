@@ -14,6 +14,8 @@ var_dump($_SESSION); //as a test to see what is what up top
 
 //require auto-load function
 require_once('vendor/autoload.php');
+//this file will define my functions
+require('model/data-layer.php');
 
 //create instance of Base class
 //instantiate Fat Free framework
@@ -22,7 +24,6 @@ $f3 = Base::instance();
 //define default route
 //routes only exist when defined in this controller
 $f3->route('GET /', function(){
-    //echo "<h1>Sup World</h1>";
 
     $view = new Template();
 
@@ -89,6 +90,9 @@ $f3->route('GET|POST /order1', function($f3){
 //define order 2 route
 //routes only exist when defined in this controller
 $f3->route('GET|POST /order2', function($f3){
+
+    //get the condiments from the model and add to the F3 hive
+    $f3->set('conds', getCondiments());
 
     //if the form has been posted
     if($_SERVER['REQUEST_METHOD'] == 'POST')
