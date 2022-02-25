@@ -1,4 +1,7 @@
-.btn-primary {
-    background-color: aquamarine;
-    color: antiquewhite;
+.btn {
+    background: lightblue;
+    color: darkblue;
+    width: 15em;
+    font-weight: bold;
+    margin-top: 1em;
 }

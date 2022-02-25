@@ -1,14 +1,17 @@
 {
-  "name": "narrowsmith/328/my-diner",
+  "name": "tostrander/328/my-diner",
   "description": "My Diner Project",
   "license": "open source",
   "authors": [
     {
-      "name": "Nathan Arrowsmith",
-      "email": "narrowsmith@student.greenriver.edu"
+      "name": "Tina Ostrander",
+      "email": "tostrander@greenriver.edu"
     }
   ],
   "require": {
     "bcosca/fatfree-core": "dev-master"
+  },
+  "autoload": {
+    "classmap": ["classes/", "model/","controller/"]
   }
 }

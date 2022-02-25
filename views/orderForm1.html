@@ -1,42 +1,49 @@
 <include href="views/header.html"></include>
 <body>
-<div class="container">
-    <h1>My Diner</h1>
-    <h2>Meal Order Part 1</h2>
+    <div class="container">
+        <h1>My Diner</h1>
+        <h2>Meal Order Part 1</h2>
 
-    <form action="#" method="post" class="form-horizontal">
+        <form action="#" method="post" class="form-horizontal">
 
-        <!-- get food -->
-        <div class="form-group">
-            <label for="food" class="col-sm-4 control-label">What food would you like to order?</label>
-            <div class="col-sm-4"><input class="form-control" type="text" name="food" id="food" ></div>
-        </div>
-        <br>
+            <!-- get food -->
+            <div class="form-group">
+                <label for="food" class="col-sm-4 control-label">What food would you like to order?</label>
 
-        <!-- get meal -->
-        <div class="form-group">
-            <label class="col-sm-4 control-label">Select a meal</label>
-            <div class="col-sm-4">
-                <repeat group="{{ @meal }}" value="{{ @mealtype }}">
-                    <label><input type="radio" name="meal[]" value=" {{ @mealtype }} " >  {{ ucfirst(@mealtype) }}
-                    </label><br>
-                </repeat>
+                <div class="col-sm-4"><input class="form-control" type="text"
+                                             name="food" id="food" value="{{ @food }}"></div>
 
-
-                <!--<label><input type="radio" name="meal" value="lunch" > Lunch
-                </label><br>
-                <label><input type="radio" name="meal" value="dinner" > Dinner
-                </label><br>-->
+                <!-- Display an error if there is one -->
+                <check if="{{ isset(@errors['food']) }}">
+                    <span class="err">{{ @errors['food'] }}</span>
+                </check>
             </div>
-        </div>
+            <br>
 
+            <!-- get meal -->
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Select a meal</label>
+                <div class="col-sm-4">
+                    <repeat group="{{ @meals }}" value="{{ @meal }}">
+                        <label><input type="radio" name="meal" value="{{ @meal }}">
+                                      <check if="{{ @meal == @userMeal }}">checked</check>
+                               > {{ ucfirst(@meal) }}
+                        </label><br>
+                    </repeat>
 
-        <div class="col-xs-3 ">
-            <input class="form-control btn btn-default"
-                   type="submit" value="Next">
-        </div>
-    </form>
+                </div>
 
-</div>
+                <!-- Display an error if there is one -->
+                <check if="{{ isset(@errors['meal']) }}">
+                    <span class="err">{{ @errors['meal'] }}</span>
+                </check>
+            </div>
+
+            <div class="col-xs-3 ">
+                <input class="form-control btn btn-default"
+                       type="submit" value="Next">
+            </div>
+        </form>
+    </div>
 </body>
 </html>
