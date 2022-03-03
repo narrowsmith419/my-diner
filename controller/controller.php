@@ -1,8 +1,10 @@
 <?php
 
+//  328/my-diner/controller/controller.php
+
 class Controller
 {
-    private $_f3; //f3 object
+    private $_f3; //F3 object
 
     function __construct($f3)
     {
@@ -30,28 +32,30 @@ class Controller
             $food = $_POST['food'];
             $meal = $_POST['meal'];
 
-            //instantiate order object
-            /*$order = new Order();
-            $_SESSION['order'] = $order;*/
+            //Instantiate an order object
+            //$order = new Order();
+            //$_SESSION['order'] = $order;
 
             $_SESSION['order'] = new Order();
 
             //Validate the data
-            if (Validator::validFood($food)) {
+            if(Validator::validFood($food)) {
 
                 //Add the data to the session variable
                 $_SESSION['order']->setFood($food);
-            } else {
+            }
+            else {
 
                 //Set an error
                 $this->_f3->set('errors["food"]', 'Please enter a food');
             }
 
-            if (Validator::validMeal($meal)) {
+            if(Validator::validMeal($meal)) {
 
                 //Add the data to the session variable
                 $_SESSION['order']->setMeal($meal);
-            } else {
+            }
+            else {
 
                 //Set an error
                 $this->_f3->set('errors["meal"]', 'Please select a valid meal');
@@ -62,9 +66,9 @@ class Controller
                 $this->_f3->reroute('order2');
             }
         }
+
         $this->_f3->set('food', $food);
         $this->_f3->set('userMeal', $meal);
-        //colon colon lets you access static methods in php
         $this->_f3->set('meals', DataLayer::getMeals());
 
         $view = new Template();
@@ -88,10 +92,12 @@ class Controller
                 //If condiments are valid
                 if (Validator::validCondiments($conds)) {
                     $conds = implode(", ", $_POST['conds']);
-                } else {
+                }
+                else {
                     $this->_f3->set("errors['cond']", "Invalid selection");
                 }
-            } else {
+            }
+            else {
 
                 $conds = "None selected";
             }
@@ -101,11 +107,10 @@ class Controller
                 $_SESSION['order']->setCondiments($conds);
                 $this->_f3->reroute('summary');
             }
-
         }
+
         $view = new Template();
         echo $view->render('views/orderForm2.html');
-
     }
 
     function summary()
@@ -113,11 +118,25 @@ class Controller
         //echo "<h1>My Diner</h1>";
 
         //TODO: Send data to the model
+        //global $dataLayer;
+        //$dataLayer->saveOrder($order);
+        $GLOBALS['dataLayer']->saveOrder($_SESSION['order']);
 
         $view = new Template();
         echo $view->render('views/summary.html');
 
         //Clear the session data
         session_destroy();
+    }
+
+    function admin()
+    {
+        //Get the data from the model
+        $orders = $GLOBALS['dataLayer']->getOrders();
+        $this->_f3->set('orders', $orders);
+
+        //Display the view page
+        $view = new Template();
+        echo $view->render('views/admin.html');
     }
 }
